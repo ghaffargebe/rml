@@ -50,7 +50,7 @@
                             <label for="deskripsi" class="col-md-4 control-label">Deskripsi</label>
 
                             <div class="col-md-6">
-                                <textarea id="deskripsi" class="form-control" name="deskripsi" style="resize:vertical;height: 150px;">{{ (isset($dataset)) ?  $dataset->deskripsi  : '' }}</textarea>
+                                <textarea id="deskripsi" class="form-control mytextarea" name="deskripsi" style="resize:vertical;height: 150px;">{{ (isset($dataset)) ?  $dataset->deskripsi  : '' }}</textarea>
 
                                 @if ($errors->has('deskripsi'))
                                     <span class="help-block">
@@ -78,7 +78,7 @@
                             <label for="howto" class="col-md-4 control-label">How to</label>
 
                             <div class="col-md-6">
-                                <textarea id="howto" class="form-control" name="howto" style="resize:vertical;height: 150px;">{{ (isset($dataset)) ?  $dataset->howto  : '' }}</textarea>
+                                <textarea id="howto" class="form-control mytextarea" name="howto" style="resize:vertical;height: 150px;">{{ (isset($dataset)) ?  $dataset->howto  : '' }}</textarea>
 
                                 @if ($errors->has('howto'))
                                     <span class="help-block">
@@ -148,6 +148,7 @@
         @push('scripts')
         {!! Html::style('vendors/jquery-nice-select/css/nice-select.css'); !!}
         {!! Html::script('vendors/jquery-nice-select/js/jquery.nice-select.js'); !!}
+        {!! Html::script('js/tinymce/tinymce.min.js'); !!}
         <script type="text/javascript">
           $(document).ready(function() {
             $('#nice-select').niceSelect();
@@ -155,6 +156,10 @@
           $( function() {
             $( ".tanggal" ).datepicker({ dateFormat: 'dd-mm-yy' });
           } );
+
+          tinymce.init({
+            selector: '.mytextarea'
+          });
 
           function tambahFile(){
             

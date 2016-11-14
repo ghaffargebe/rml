@@ -41,6 +41,9 @@ class datasetController extends Controller
             $tipe = implode(", ", $tipe);
             return $tipe;
         })
+        ->editColumn('deskripsi', function($dataset){
+            return substr($dataset->deskripsi, 0,20).' ...';
+        })
         ->addColumn('action', function ($dataset) {
                 if (Auth::user()->jenis != 0) {
                     $button = '<div class="btn-group-vertical">
