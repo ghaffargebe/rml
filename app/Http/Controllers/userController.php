@@ -28,7 +28,7 @@ class userController extends Controller
     }
 
     public function getUser(){
-        $user = User::get(array('_id','username','email','created_at'));
+        $user = User::where('jenis','!=','0')->get(array('_id','name','username','email','created_at'));
 
         return Datatables::of($user)
         ->addColumn('action', function ($user) {

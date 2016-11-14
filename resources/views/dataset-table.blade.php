@@ -7,14 +7,14 @@
               <div class="col-md-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Kelola Pengguna</h2>
+                    <h2>Kelola Dataset</h2>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content" ng-app="">
                     <div class="col-md-12 col-sm-12 col-xs-12">
                       <div class="x_panel">
                         <div class="x_title">
-                          <h2>Daftar Pengguna</h2>
+                          <h2>Daftar Dataset</h2>
                           <div class="clearfix"></div>
                         </div>
                       @if (session()->has('flash_notification.message'))
@@ -23,17 +23,20 @@
                               {!! session('flash_notification.message') !!}
                           </div>
                       @endif
+
+                      	@if(Auth::user()->jenis != 0)
                         <div class="row">
-                          <a class="btn btn-primary" href="/user/create" role="button"><i class="fa fa-plus" aria-hidden="true"></i> Tambah Pengguna</a>
-                      </div>
+                          <a class="btn btn-primary" href="{{ url('/dataset/create')}}" role="button"><i class="fa fa-plus" aria-hidden="true"></i> Tambah Dataset</a>
+                      	</div>
+                      	@endif
                         <table id="users-table" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                           <thead>
                             <tr>
                               <!-- <th>ID</th> -->
                               <th>Nama Lembaga</th>
-                              <th>Username</th>
-                              <th>Email</th>
-                              <th>Created at</th>
+                              <th>Deskripsi</th>
+                              <th>Tanggal</th>
+                              <th>Tipe</th>
                               <th>Aksi</th>
                             </tr>
                           </thead>
@@ -49,23 +52,20 @@
         @endsection
         
         @push('scripts')
-        {!! Html::style('vendors/jquery-nice-select/css/nice-select.css'); !!}
-        {!! Html::script('vendors/jquery-nice-select/js/jquery.nice-select.js'); !!}
         <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript">
 
           $(document).ready(function() {
-            $('#nice-select').niceSelect();
             $('#users-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ URL::to('getUser') }}",
+                ajax: "{{ URL::to('getDataset') }}",
                 columns: [
                     // { data: '_id', name: '_id' },
-                    { data: 'name', name: 'name' },
-                    { data: 'username', name: 'username' },
-                    { data: 'email', name: 'email' },
-                    { data: 'created_at', name: 'created_at' },
+                    { data: 'organisasi', name: 'organisasi' },
+                    { data: 'deskripsi', name: 'deskripsi' },
+                    { data: 'tanggal', name: 'tanggal' },
+                    { data: 'tipe', name: 'tipe' },
                     { data: 'action', name: 'action' },
                 ]
             });
@@ -77,7 +77,7 @@
             var self = $(this);
             swal({
               title: "Apakah Anda Yakin?",
-              text: "Anda akan menghapus salah satu data pengguna!",
+              text: "Anda akan menghapus salah satu dataset!",
               type: "warning",
               showCancelButton: true,
               confirmButtonColor: "#DD6B55",

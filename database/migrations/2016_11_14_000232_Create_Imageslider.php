@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePuiCollection extends Migration
+class CreateImageslider extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,11 @@ class CreatePuiCollection extends Migration
      */
     public function up()
     {
-        Schema::create('pui', function($collection)
-        {
-            $collection->index('id');
+        Schema::create('imagesliders', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('alamat');
+            $table->timestamps();
         });
     }
 
@@ -25,9 +27,6 @@ class CreatePuiCollection extends Migration
      */
     public function down()
     {
-        Schema::create('pui', function($collection)
-        {
-            $collection->index('id');
-        });
+        Schema::drop('imagesliders');
     }
 }

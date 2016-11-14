@@ -96,9 +96,12 @@
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <ul class="nav side-menu">
-                  <li><a href="/dashboard"><i class="fa fa-bar-chart-o"></i> Visualisasi Data</span></a></li>
-                  <li><a href="/rml"><i class="fa fa-cloud"></i> API Services</a></li>
+                  <li><a href="{{ URL::to('dashboard') }}"><i class="fa fa-bar-chart-o"></i> Dashboar</span></a></li>
+                  <li><a href="{{ URL::to('dataset') }}"><i class="fa fa-table"></i> Dataset</span></a></li>
+                  <li><a href="{{ URL::to('berita') }}"><i class="fa fa-newspaper-o"></i> Berita</span></a></li>
+                  <!-- <li><a href="/rml"><i class="fa fa-cloud"></i> API Services</a></li> -->
                   <li><a href="{{ URL::to('user') }}"><i class="fa fa-users"></i> Manajemen Pengguna</a></li>
+                  <li><a href="{{ URL::to('imageslider') }}"><i class="fa fa-image"></i> Manajemen Image Slider</a></li>
                 </ul>
               </div>
             </div> 
@@ -121,12 +124,6 @@
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
                     <li><a href="{{ url('user/'.Auth::user()->id) }}"> Profil</a></li>
-                    <li>
-                      <a href="javascript:;">
-                        <span>Pengaturan</span>
-                      </a>
-                    </li>
-                    <li><a href="javascript:;">Bantuan</a></li>
                     <li><a href="{{ url('/logout') }}"><i class="fa fa-sign-out pull-right"></i> Logout</a></li>
                   </ul>
                 </li>
