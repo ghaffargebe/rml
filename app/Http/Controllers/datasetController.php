@@ -37,8 +37,12 @@ class datasetController extends Controller
             return date("d F Y",strtotime($dataset->tanggal));
         })
         ->editColumn('tipe', function($dataset){
-            $tipe = explode(";;", $dataset->tipe);
-            $tipe = implode(", ", $tipe);
+            if (isset($dataset->tipe)) {
+                $tipe = explode(";;", $dataset->tipe);
+                $tipe = implode(", ", $tipe);
+            }else{
+                $tipe = "Link API";
+            }
             return $tipe;
         })
         ->editColumn('deskripsi', function($dataset){
@@ -89,25 +93,25 @@ class datasetController extends Controller
             'organisasi' => 'required',
             'deskripsi' => 'required',
             'tanggal' => 'required|date_format:d/m/Y',
-            'howto' => 'required',
             // 'file' => 'mimes:json,jpg'
         ]);
-        $file = $request->file('file');
-        $now = date("YmdHis");
-        // dd(count($file));die;
-        for ($i=0; $i < count($file); $i++) { 
-            $tipe[$i] = $file[$i]->getClientOriginalExtension();
-            $filenameori[$i] = $file[$i]->getClientOriginalName();
-            $fileName[$i] = $now.md5($filenameori[$i]).'.'.$tipe[$i];
-            $file[$i]->move(
-                base_path() . '/storage/uploads/', $fileName[$i]
-            );
-        }
-        $tipe = array_unique($tipe);
-        $tipe = implode(";;", $tipe);
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $now = date("YmdHis");
+            for ($i=0; $i < count($file); $i++) { 
+                $tipe[$i] = $file[$i]->getClientOriginalExtension();
+                $filenameori[$i] = $file[$i]->getClientOriginalName();
+                $fileName[$i] = $now.md5($filenameori[$i]).'.'.$tipe[$i];
+                $file[$i]->move(
+                    base_path() . '/storage/uploads/', $fileName[$i]
+                );
+            }
+            $tipe = array_unique($tipe);
+            $tipe = implode(";;", $tipe);
 
-        $filenameori = implode(";;", $filenameori);
-        $fileName = implode(";;", $fileName);
+            $filenameori = implode(";;", $filenameori);
+            $fileName = implode(";;", $fileName);
+        }
 
         $pecah = explode("/", $_POST['tanggal']);
         $tanggal = $pecah[2].'-'.$pecah[1].'-'.$pecah[0];
@@ -115,10 +119,15 @@ class datasetController extends Controller
         $dataset->organisasi = $_POST['organisasi'];
         $dataset->deskripsi = $_POST['deskripsi'];
         $dataset->tanggal = $tanggal;
-        $dataset->howto = $_POST['howto'];
-        $dataset->filename = $fileName;
-        $dataset->filenameori = $filenameori;
-        $dataset->tipe = $tipe;
+        if (isset($_POST['linkapi'])) {
+            $dataset->linkapi = $_POST['linkapi'];
+            $dataset->howto = $_POST['howto'];
+        }
+        if ($request->hasFile('file')) {
+            $dataset->filename = $fileName;
+            $dataset->filenameori = $filenameori;
+            $dataset->tipe = $tipe;
+        }
         $dataset->save();
 
         flash('Data Berhasil Ditambahkan !', 'success');
@@ -189,6 +198,7 @@ class datasetController extends Controller
         $dataset->organisasi = $_POST['organisasi'];
         $dataset->deskripsi = $_POST['deskripsi'];
         $dataset->tanggal = $tanggal;
+        $dataset->linkapi = $_POST['linkapi'];
         $dataset->howto = $_POST['howto'];
         if ($request->hasFile('file')) {
             $dataset->filename = $fileName;

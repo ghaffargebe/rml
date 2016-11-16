@@ -26,6 +26,9 @@
                             <div class="separator"></div>
                             <p>{{ $d }}</p>
                             <div class="separator"></div>
+                            @if(isset($dataset->linkapi))
+                            Link : {{ $dataset->linkapi }}
+                            @endif
                             @if(isset($dataset->filename))
                             <div class="attachment">
                                     <p>

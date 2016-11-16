@@ -63,21 +63,25 @@ class HomeController extends Controller
             return $string;
         })
         ->editColumn('tipe', function($dataset){
-            $tipe = explode(";;", $dataset->tipe);
-            $ret = '';
-            foreach ($tipe as $key) {
-                if ($key == "json") {
-                    $label = 'primary';
-                }elseif ($key == 'oai') {
-                    $label = 'danger';
-                }elseif ($key == "csv") {
-                    $label = 'success';
-                }else{
-                    $label = 'default';
+            if (isset($dataset->tipe)) {
+                $tipe = explode(";;", $dataset->tipe);
+                $ret = '';
+                foreach ($tipe as $key) {
+                    if ($key == "json") {
+                        $label = 'primary';
+                    }elseif ($key == 'oai') {
+                        $label = 'danger';
+                    }elseif ($key == "csv") {
+                        $label = 'success';
+                    }else{
+                        $label = 'default';
+                    }
+                    $ret .= '<div class="div-td">';
+                    $ret .= '<span class="label label-'.$label.'">'.strtoupper($key).'</span>';
+                    $ret .= '</div>';
                 }
-                $ret .= '<div class="div-td">';
-                $ret .= '<span class="label label-'.$label.'">'.strtoupper($key).'</span>';
-                $ret .= '</div>';
+            }else{
+                $ret = '<span class="label label-info">Link API</span>';
             }
             return $ret;
         })

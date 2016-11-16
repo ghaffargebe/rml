@@ -74,6 +74,20 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('linkapi') ? ' has-error' : '' }}">
+                            <label for="linkapi" class="col-md-4 control-label">Link API</label>
+
+                            <div class="col-md-6">
+                                <input id="linkapi" type="text" class="form-control" name="linkapi" value="{{ (isset($dataset)) ?  $dataset->linkapi  : '' }}">
+
+                                @if ($errors->has('linkapi'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('linkapi') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('howto') ? ' has-error' : '' }}">
                             <label for="howto" class="col-md-4 control-label">How to</label>
 
