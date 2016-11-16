@@ -62,7 +62,7 @@
                 ajax: "{{ URL::to('getUser') }}",
                 columns: [
                     // { data: '_id', name: '_id' },
-                    { data: 'name', name: 'name' },
+                    { data: 'organisasi', name: 'organisasi' },
                     { data: 'username', name: 'username' },
                     { data: 'email', name: 'email' },
                     { data: 'created_at', name: 'created_at' },

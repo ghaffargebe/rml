@@ -10,15 +10,16 @@
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Nama Lembaga</label>
+                        <div class="form-group{{ $errors->has('organisasi') ? ' has-error' : '' }}">
+                            <label for="organisasi" class="col-md-4 control-label">Nama Lembaga</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}">
+                                <!-- <input id="organisasi" type="text" class="form-control" name="organisasi" value="{{ old('organisasi') }}"> -->
+                                {{ Form::select('organisasi', $lembaga, null, ['placeholder' => 'Please Select...', 'class' => 'form-control']) }}
 
-                                @if ($errors->has('name'))
+                                @if ($errors->has('organisasi'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
+                                        <strong>{{ $errors->first('organisasi') }}</strong>
                                     </span>
                                 @endif
                             </div>

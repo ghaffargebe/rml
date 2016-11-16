@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace RML\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\JsonModel;
+use RML\JsonModel;
 
-use App\Http\Requests;
+use RML\Http\Requests;
 
 class JsonController extends Controller
 {

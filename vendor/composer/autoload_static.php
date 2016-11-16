@@ -72,6 +72,10 @@ class ComposerStaticInitebf22e74a404e0bd22d9b042bb778a2d
             'SuperClosure\\' => 13,
             'Scriptotek\\OaiPmh\\' => 18,
         ),
+        'R' => 
+        array (
+            'RML\\' => 4,
+        ),
         'P' => 
         array (
             'Psy\\' => 4,
@@ -116,10 +120,6 @@ class ComposerStaticInitebf22e74a404e0bd22d9b042bb778a2d
             'Collective\\Html\\' => 16,
             'ClassPreloader\\' => 15,
             'Carbon\\' => 7,
-        ),
-        'A' => 
-        array (
-            'App\\' => 4,
         ),
     );
 
@@ -222,6 +222,10 @@ class ComposerStaticInitebf22e74a404e0bd22d9b042bb778a2d
         array (
             0 => __DIR__ . '/..' . '/scriptotek/oai-pmh-client/src',
         ),
+        'RML\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app',
+        ),
         'Psy\\' => 
         array (
             0 => __DIR__ . '/..' . '/psy/psysh/src/Psy',
@@ -305,10 +309,6 @@ class ComposerStaticInitebf22e74a404e0bd22d9b042bb778a2d
         'Carbon\\' => 
         array (
             0 => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon',
-        ),
-        'App\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/app',
         ),
     );
 
@@ -409,8 +409,9 @@ class ComposerStaticInitebf22e74a404e0bd22d9b042bb778a2d
         'Canvas_Factory' => __DIR__ . '/..' . '/dompdf/dompdf/include/canvas_factory.cls.php',
         'Cellmap' => __DIR__ . '/..' . '/dompdf/dompdf/include/cellmap.cls.php',
         'CreateBerita' => __DIR__ . '/../..' . '/database/migrations/2016_11_14_000426_Create_Berita.php',
-        'CreateDataset' => __DIR__ . '/../..' . '/database/migrations/2016_11_13_235556_Dataset.php',
+        'CreateDataset' => __DIR__ . '/../..' . '/database/migrations/2016_11_13_235556_Create_Dataset.php',
         'CreateImageslider' => __DIR__ . '/../..' . '/database/migrations/2016_11_14_000232_Create_Imageslider.php',
+        'CreateOrganisasi' => __DIR__ . '/../..' . '/database/migrations/2016_11_14_072400_Create_Organisasi.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
         'DOMPDF' => __DIR__ . '/..' . '/dompdf/dompdf/include/dompdf.cls.php',

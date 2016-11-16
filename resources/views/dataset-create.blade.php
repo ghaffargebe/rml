@@ -33,10 +33,10 @@
                         @endif
 
                         <div class="form-group{{ $errors->has('organisasi') ? ' has-error' : '' }}">
-                            <label for="organisasi" class="col-md-4 control-label">Nama Lembaga</label>
+                            <label for="organisasi" class="col-md-4 control-label">Nama Instansi</label>
 
                             <div class="col-md-6">
-                                <input id="organisasi" type="text" class="form-control" name="organisasi" value="{{ Auth::user()->name }}" readonly>
+                                <input id="organisasi" type="text" class="form-control" name="organisasi" value="{{ Auth::user()->organisasi }}" readonly>
 
                                 @if ($errors->has('organisasi'))
                                     <span class="help-block">
@@ -89,21 +89,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('file') ? ' has-error' : '' }}">
-                            <label for="file" class="col-md-4 control-label">File Upload (XLS, JSON, XML)</label>
-
-                            <div class="col-md-6">
-                                <input type="file" name="file[]" class="form-control">
-
-                                @if ($errors->has('file'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('file') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('file') ? ' has-error' : '' }}">
-                            <label for="file" class="col-md-4 control-label">File Upload (XLS, JSON, XML)</label>
+                            <label for="file" class="col-md-4 control-label">File Upload</label>
 
                             <div class="col-md-6">
                                 <input type="file" name="file[]" class="form-control">

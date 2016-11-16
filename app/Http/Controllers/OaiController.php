@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace RML\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
-use App\OaiModel;
+use RML\Http\Requests;
+use RML\OaiModel;
 
 use Phpoaipmh\Client;
 use Phpoaipmh\Endpoint;

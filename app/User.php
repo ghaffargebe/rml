@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace RML;
 
 // use Illuminate\Foundation\Auth\User as Authenticatable;
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
@@ -17,7 +17,7 @@ class User extends Eloquent implements \Illuminate\Contracts\Auth\Authenticatabl
      * @var array
      */
     protected $fillable = [
-        'username', 'name', 'email', 'password', 'jenis', 'status',
+        'username', 'organisasi', 'email', 'password', 'jenis', 'status',
     ];
 
     /**

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace RML\Http\Controllers;
 
 use Illuminate\Http\Request;
-// use App\Http\Requests\storeDataset;
+// use RML\Http\Requests\storeDataset;
 
-use App\Http\Requests;
-use App\Dataset;
+use RML\Http\Requests;
+use RML\Dataset;
 use Datatables;
 use Auth;
 use URL;
@@ -29,7 +29,7 @@ class datasetController extends Controller
         if (Auth::user()->jenis == 0) {
             $dataset = Dataset::get();
         }else{
-            $dataset = Dataset::where('organisasi','=',Auth::user()->name)->get();
+            $dataset = Dataset::where('organisasi','=',Auth::user()->organisasi)->get();
         }
 
         return Datatables::of($dataset)
@@ -42,7 +42,9 @@ class datasetController extends Controller
             return $tipe;
         })
         ->editColumn('deskripsi', function($dataset){
-            return substr($dataset->deskripsi, 0,20).' ...';
+            $stringCut = substr($dataset->deskripsi, 0, 50);
+            $string = substr($stringCut, 0, strrpos($stringCut, ' ')).'...';
+            return $string;//substr($dataset->deskripsi, 0,30).' ...';
         })
         ->addColumn('action', function ($dataset) {
                 if (Auth::user()->jenis != 0) {

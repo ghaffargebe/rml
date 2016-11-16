@@ -4,6 +4,7 @@ namespace Illuminate\Foundation\Auth;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Organisasi;
 
 trait RegistersUsers
 {
@@ -29,8 +30,12 @@ trait RegistersUsers
         if (property_exists($this, 'registerView')) {
             return view($this->registerView);
         }
+        $org = Organisasi::get();
+        foreach ($org as $key => $value) {
+            $lembaga[$value->name] = $value->name;
+        }
 
-        return view('auth.register');
+        return view('auth.register')->with('lembaga',$lembaga);
     }
 
     /**

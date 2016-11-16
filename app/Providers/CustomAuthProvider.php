@@ -1,8 +1,8 @@
-<?php namespace App\Providers;
+<?php namespace RML\Providers;
 
 use Illuminate\Support\Facades\Auth;
 
-use App\Providers\CustomUserProvider;
+use RML\Providers\CustomUserProvider;
 use Illuminate\Support\ServiceProvider;
 
 class CustomAuthProvider extends ServiceProvider {

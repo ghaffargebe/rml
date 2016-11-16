@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Providers;
-use App\User; 
+namespace RML\Providers;
+use RML\User; 
 use Carbon\Carbon;
 use Illuminate\Auth\GenericUser;
 use Illuminate\Contracts\Auth\Authenticatable;

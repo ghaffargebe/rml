@@ -1,18 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace RML\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
-use App\Http\Requests\tambahuserform;
+use RML\Http\Requests;
+use RML\Http\Requests\tambahuserform;
 
-use App\User;
+use RML\User;
 use Yajra\Datatables\Datatables;
 use Validator;
 use Hash;
 use URL;
 use Form;
+use RML\Organisasi;
 
 class userController extends Controller
 {
@@ -28,8 +29,8 @@ class userController extends Controller
     }
 
     public function getUser(){
-        $user = User::where('jenis','!=','0')->get(array('_id','name','username','email','created_at'));
-
+        $user = User::where('jenis','!=','0')
+                    ->get(array('_id','organisasi','username','email','created_at'));
         return Datatables::of($user)
         ->addColumn('action', function ($user) {
                 $button = '<div class="btn-group-vertical">
@@ -52,7 +53,11 @@ class userController extends Controller
      */
     public function create()
     {
-        return view('user-create');
+        $org = Organisasi::get();
+        foreach ($org as $key => $value) {
+            $lembaga[$value->name] = $value->name;
+        }
+        return view('user-create')->with('lembaga',$lembaga);
     }
 
     /**
@@ -64,7 +69,7 @@ class userController extends Controller
     public function store(Request $request)
     { 
         $this->validate($request, [
-            'name' => 'required|max:255',
+            'organisasi' => 'required',
             'username' => 'required|max:255|unique:users',
             'email' => 'required|email|max:255',
             'password' => 'required|min:6|confirmed',
@@ -72,7 +77,7 @@ class userController extends Controller
         ]);
 
         $user = new User;
-        $user->name = $_POST['name'];
+        $user->organisasi = $_POST['organisasi'];
         $user->username = $_POST['username'];
         $user->email = $_POST['email'];
         $user->password = Hash::make($_POST['password']);
@@ -104,8 +109,12 @@ class userController extends Controller
      */
     public function edit($id)
     {
+        $org = Organisasi::get();
+        foreach ($org as $key => $value) {
+            $lembaga[$value->name] = $value->name;
+        }
         $user = User::find($id);
-        return view('user-create')->with('user',$user);
+        return view('user-create')->with(compact('user','lembaga'));
     }
 
     /**
@@ -118,7 +127,7 @@ class userController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required|max:255',
+            'organisasi' => 'required',
             'username' => 'required|max:255',
             'email' => 'required|email|max:255',
             'password' => 'min:6|confirmed',
@@ -126,7 +135,7 @@ class userController extends Controller
         ]);
 
         $user = User::find($id);
-        $user->name = $_POST['name'];
+        $user->organisasi = $_POST['organisasi'];
         $user->username = $_POST['username'];
         $user->email = $_POST['email'];
         if (isset($_POST['password'])) {

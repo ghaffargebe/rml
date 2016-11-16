@@ -32,15 +32,19 @@
                             {{ Form::open(['url' => 'user', 'class' => 'form-horizontal', 'role' => 'form']) }}
                         @endif
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Nama Lembaga</label>
+                        <div class="form-group{{ $errors->has('organisasi') ? ' has-error' : '' }}">
+                            <label for="organisasi" class="col-md-4 control-label">Nama Instansi</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ (isset($user)) ?  $user->name  : '' }}">
-
-                                @if ($errors->has('name'))
+                                <!-- <input id="organisasi" type="text" class="form-control" name="organisasi" value="{{ (isset($user)) ?  $user->organisasi  : '' }}"> -->
+                                @if(isset($user))
+                                {{ Form::select('organisasi', $lembaga, $user->organisasi, ['placeholder' => 'Please Select...', 'class' => 'form-control']) }}
+                                @else
+                                {{ Form::select('organisasi', $lembaga, null, ['placeholder' => 'Please Select...', 'class' => 'form-control']) }}
+                                @endif
+                                @if ($errors->has('organisasi'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
+                                        <strong>{{ $errors->first('organisasi') }}</strong>
                                     </span>
                                 @endif
                             </div>

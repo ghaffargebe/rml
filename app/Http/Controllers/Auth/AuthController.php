@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace RML\Http\Controllers\Auth;
 
-use App\User;
+use RML\User;
 use Validator;
-use App\Http\Controllers\Controller;
+use RML\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
@@ -49,6 +49,7 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
+            'organisasi' => 'required',
             'username' => 'required|max:255|unique:users',
             'email' => 'required|email|max:255',
             'password' => 'required|min:6|confirmed',
@@ -65,6 +66,7 @@ class AuthController extends Controller
     protected function create(array $data)
     {
         return User::create([
+            'organisasi' => $data['organisasi'],
             'username' => $data['username'],
             'email' => $data['email'],
             'jenis' => $data['jenis'],

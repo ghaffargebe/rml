@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace RML\Http\Controllers;
 
-use App\Http\Controllers\RMLController;
-use App\Http\Controllers\OaiController;
-use App\Http\Controllers\JsonController;
-use App\WebServiceModel;
+use RML\Http\Controllers\RMLController;
+use RML\Http\Controllers\OaiController;
+use RML\Http\Controllers\JsonController;
+use RML\WebServiceModel;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
+use RML\Http\Requests;
 
 class WebServiceUpdater extends Controller
 {

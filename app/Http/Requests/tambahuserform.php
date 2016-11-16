@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Requests;
+namespace RML\Http\Requests;
 
-use App\Http\Requests\Request;
+use RML\Http\Requests\Request;
 
 class tambahuserform extends Request
 {

@@ -151,10 +151,10 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        RML\Providers\AppServiceProvider::class,
+        RML\Providers\AuthServiceProvider::class,
+        RML\Providers\EventServiceProvider::class,
+        RML\Providers\RouteServiceProvider::class,
 
         //laravel mongo
         Jenssegers\Mongodb\MongodbServiceProvider::class,
@@ -165,10 +165,8 @@ return [
         //datatables
         Yajra\Datatables\DatatablesServiceProvider::class,
 
-        App\Providers\CustomAuthProvider::class,
-        Laracasts\Flash\FlashServiceProvider::class,
-        Infinety\Alerts\AlertServiceProvider::class
-
+        RML\Providers\CustomAuthProvider::class,
+        Laracasts\Flash\FlashServiceProvider::class
     ],
 
     /*

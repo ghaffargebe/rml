@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace RML\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
+use RML\Http\Requests;
 
 class InputApiController extends Controller
 {

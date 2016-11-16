@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>SIIN</title>
+    <title>RML</title>
 
     <!-- Bootstrap -->
     <!-- <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"> -->
@@ -45,7 +45,6 @@
     {!! Html::script('vendors/fastclick/lib/fastclick.js'); !!}
     {!! Html::script('vendors/nprogress/nprogress.js'); !!}
     {!! Html::script('js/sweetalert.js'); !!}
-    @include('Alerts::alerts')
     
     @stack('scripts-head')
 
@@ -100,8 +99,11 @@
                   <li><a href="{{ URL::to('dataset') }}"><i class="fa fa-table"></i> Dataset</span></a></li>
                   <li><a href="{{ URL::to('berita') }}"><i class="fa fa-newspaper-o"></i> Berita</span></a></li>
                   <!-- <li><a href="/rml"><i class="fa fa-cloud"></i> API Services</a></li> -->
-                  <li><a href="{{ URL::to('user') }}"><i class="fa fa-users"></i> Manajemen Pengguna</a></li>
+                  @if(Auth::user()->jenis == 0)
+                  <li><a href="{{ URL::to('organisasi') }}"><i class="fa fa-group"></i> Manajemen Instansi</a></li>
+                  <li><a href="{{ URL::to('user') }}"><i class="fa fa-user"></i> Manajemen Pengguna</a></li>
                   <li><a href="{{ URL::to('imageslider') }}"><i class="fa fa-image"></i> Manajemen Image Slider</a></li>
+                  @endif
                 </ul>
               </div>
             </div> 
@@ -138,7 +140,7 @@
         </div>
         <footer>
           <div class="pull-right">
-            SIIN - RISTEK DIKTI
+            RML - RISTEK DIKTI
           </div>
           <div class="clearfix"></div>
         </footer>

@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Providers;
+namespace RML\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use RML\Organisasi;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +14,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->composer('layouts.app', function($view)
+        {
+            $nama_org = Organisasi::get();
+            $view->with('nama_org', $nama_org);
+        });
     }
 
     /**

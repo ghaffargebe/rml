@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace RML\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Datatables;
-use App\Http\Requests;
-use App\RMLModel;
+use RML\Http\Requests;
+use RML\RMLModel;
 
 class RMLController extends Controller
 {

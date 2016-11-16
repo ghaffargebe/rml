@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
-use App\puiModel;
-use App\puiProdukModel;
+namespace RML\Http\Controllers;
+use RML\puiModel;
+use RML\puiProdukModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-use App\Http\Requests;
+use RML\Http\Requests;
 
 class SaveToCollection extends Controller
 {

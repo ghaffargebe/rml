@@ -51,6 +51,7 @@
 					<li><a href="{{ url('/login') }}">&nbsp;&nbsp;Login&nbsp;&nbsp;</a></li>
 					<li><a href="{{ url('/register') }}" style="border-right: 1px solid #AAA">Register</a></li>
 					@else
+					<li><a href="{{ url('/dashboard') }}">&nbsp;&nbsp;Dashboard&nbsp;&nbsp;</a></li>
 					<li><a href="{{ url('/logout') }}">&nbsp;&nbsp;Logout&nbsp;&nbsp;</a></li>
 					@endif
 				</ul>
@@ -70,44 +71,26 @@
 			</div>
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="/">Home</a></li>
-					@if (Auth::user())
-					<li><a href="/dashboard">Dashboard</a></li>
-					<!-- <li class="dropdown">
+					<li><a href="{{ url('/') }}">Home</a></li>
+					<li><a href="{{ url('frontdataset') }}">Dataset</a></li>
+					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Organisasi <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">PDII LIPI</a></li>
-							<li><a href="#">PUI RISTEKDIKTI</a></li>
-							<li><a href="#">SIMLITABMAS</a></li>
-							<li role="separator" class="divider"></li>
-							<li><a href="#">RISTEKDIKTI</a></li>
+							@foreach($nama_org as $key)
+							<li><a href="{{ url('profil/'.$key->name) }}">{{ $key->name }}</a></li>
+							@endforeach
+							<!-- <li role="separator" class="divider"></li> -->
 						</ul>
-					</li> -->
-					<!-- <li><a href="#">Data Portal</a></li> -->
-					@endif
-					<li>
-						<!--< form class="navbar-form navbar-right">
-							<div class="input-group">
-								<input type="text" class="form-control" placeholder="Pencarian Dataset..">
-								<span class="input-group-btn">
-									<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
-								</span>
-							</div>
-      					</form> -->
 					</li>
+					<li><a href="{{ url('news') }}">News</a></li>
 				</ul>
 			</div><!-- /.navbar-collapse -->
 		</div><!-- /.container-fluid -->
 	</nav>
 	<body>
-		<div class="container" id="subhead" style="padding-left: 0;padding-right: 0;">
-			<div style="padding:10px 0"></div>
-			<div class="row">
-				@yield('content')
-			</div>
-			<div class="push"></div>
-		</div>
-		
+		@yield('content')
+		<div class="push"></div>		
+		@stack('scripts')
 	</body>
 	<footer style="padding:20px; background-color: white; border-top: 4px solid #0060AA">
 		<div class="text-center">

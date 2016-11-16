@@ -10,14 +10,20 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index');
 Route::get('tes', function () {
     // return phpinfo() ;
     $a = Hash::make('bismillah');
     echo $a;
 });
+
+Route::get('profil/{organisasi}','HomeController@profil');
+Route::get('frontdataset','HomeController@frontdataset');
+Route::get('getFrontDataset/{org}','HomeController@getFrontDataset');
+Route::get('frontdatadetail/{id}','HomeController@frontdatadetail');
+Route::get('download/{file}','HomeController@download');
+Route::get('news','HomeController@news');
+Route::get('frontberitadetail/{id}','HomeController@frontberitadetail');
 
 Route::auth();
 
@@ -36,37 +42,12 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::patch('dataset/{id}','datasetController@update');
     Route::delete('dataset/{id}','datasetController@destroy');
 
-    // Route::get('/rml/input/{status?}', 'RMLController@create')->name('inputRML');
-    // Route::get('/rml', 'DashboardController@rml');
+    Route::resource('organisasi', 'organisasiController');
+    Route::get('getOrganisasi', 'organisasiController@getOrganisasi');
 
-    // Route::get('/datatables/getRml', 'RMLController@getAllDt');
-
-    // Route::get('/chart/getKategoriLembaga', 'DashboardController@getKategoriLembaga');
-    // Route::get('/chart/getBentukLembaga', 'DashboardController@getBentukLembaga');
-    // Route::get('/chart/getLembagaInduk', 'DashboardController@getLembagaInduk');
-    // Route::get('/chart/getFokusBidang', 'DashboardController@getFokusBidang');
-    // Route::get('/chart/getTrl', 'DashboardController@getTrl');
+    Route::resource('berita', 'beritaController');
+    Route::get('getBerita', 'beritaController@getBerita');
+    Route::get('berita/{id}/publish', 'beritaController@publish');
+    Route::get('berita/{id}/unpublish', 'beritaController@unpublish');
+    Route::get('berita/{id}/headline', 'beritaController@headline');
 });
-
-// Route::get('/pui-lembaga', 'SaveToCollection@index');
-// Route::get('/pui-lembaga/store', 'SaveToCollection@store');
-// Route::get('/pui-produk/store', 'SaveToCollection@storeProduk');
-// // Route::get('/pui-lembaga/storetes', 'SaveToCollection@storetes');
-// Route::get('/pui-lembaga/show', 'SaveToCollection@show');
-// Route::get('/pui-produk/show', 'SaveToCollection@showProduk');
-
-// Route::get('/oai', 'OaiController@index');
-// Route::get('/oai/tes', 'OaiController@tes');
-// Route::get('/oai/list', 'OaiController@getAvailableMetadataFormats');
-// Route::get('/oai/records', 'OaiController@getRecords');
-
-// Route::get('/rml/get-active/', 'RMLController@getActive');
-// Route::get('/rml/get-active-count/', 'RMLController@getActiveCount');
-// Route::post('/rml/submit', 'RMLController@store');
-
-
-// Route::get('/updater/update/', 'WebServiceUpdater@updateLocal');
-// Route::get('/updater/update/{type}', 'WebServiceUpdater@updateByType');
-
-
-

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace RML;
 
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 use Auth;
@@ -14,12 +14,12 @@ class Dataset extends Eloquent
     	static::creating(function($model)
     	{
     		$user = Auth::user();
-    		$model->created_by = $user->id;
+    		$model->created_by = $user->username;
     	});
     	static::updating(function($model)
     	{
     		$user = Auth::user();
-    		$model->updated_by = $user->id;
+    		$model->updated_by = $user->username;
     	});
     }
 }
