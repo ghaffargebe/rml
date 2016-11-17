@@ -10,7 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::group(['prefix' => 'rml'], function(){
+// Route::group(['prefix' => 'rml'], function(){
         Route::get('users', function () {
             echo "string";
         });
@@ -56,4 +56,4 @@ Route::group(['prefix' => 'rml'], function(){
         Route::get('berita/{id}/unpublish', 'beritaController@unpublish');
         Route::get('berita/{id}/headline', 'beritaController@headline');
     });
-});
+// });
