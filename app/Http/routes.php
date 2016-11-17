@@ -10,8 +10,8 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::get('/', 'HomeController@index');
-Route::get('tes', function () {
+Route::get('rml/', 'HomeController@index');
+Route::get('rml/tes', function () {
     // return phpinfo() ;
     $a = Hash::make('bismillah');
     echo $a;

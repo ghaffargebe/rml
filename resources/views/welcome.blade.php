@@ -24,6 +24,7 @@
         </div>
         @endforeach
     </div>
+    @foreach($berita as $brt)
     <div class="row">
         <div class="col-sm-12 h3topclear">
             <h3 class="h3topclear"><b>Artikel & Informasi</b></h3>
@@ -31,17 +32,18 @@
         </div>
         <div class="col-sm-8" id="article">
             <div class="back-white col-sm-12">
-                <h3>{{ $berita[0]->judul }} &nbsp;<small><label class="label label-danger">HEADLINE</label></small><small class="pull-right">{{ date('l, d F Y', strtotime($berita[0]->tanggal)) }}</small></h3>
+                <h3>{{ $brt->judul }} &nbsp;<small><label class="label label-danger">HEADLINE</label></small><small class="pull-right">{{ date('l, d F Y', strtotime($brt->tanggal)) }}</small></h3>
                 <div class="separator"></div>
-                @if(isset($berita[0]->filename))
-                    <div class="col-md-4"><img src="{{ URL::asset('gambarberita/'.$berita[0]->filename) }}" alt="{{ $berita[0]->judul }}" class="img img-responsive" /></div>
+                @if(isset($brt->filename))
+                    <div class="col-md-4"><img src="{{ URL::asset('gambarberita/'.$brt->filename) }}" alt="{{ $brt->judul }}" class="img img-responsive" /></div>
                 @endif
-                {!! $berita[0]->isi !!}
+                {!! $brt->isi !!}
             </div>
         </div>
         <div class="col-sm-4">
             <div class="back-white" style="height: 360px; "></div>
         </div>
     </div>
+    @endforeach
 </div>
 @endsection
