@@ -9,7 +9,7 @@
                 <h3 class="h3topclear"><b>Organisasi</b></h3>
                 <p style="margin-bottom: 24px;">Terkait Sistem Repository Metadata Library</p>
             </div>
-            <div class="col-sm-8" id="article">
+            <div class="col-sm-12" id="article">
                 <div class="back-white col-sm-12">
                     <h3>{{ $org[0]->name }}</h3>
                     <div class="separator"></div>
@@ -19,9 +19,9 @@
                     {{ $org[0]->deskripsi }}
                 </div>
             </div>
-            <div class="col-sm-4">
+            <!-- <div class="col-sm-4">
                 <div class="back-white" style="height: 360px; "></div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
