@@ -233,10 +233,12 @@ class beritaController extends Controller
     public function headline($id)
     {
         $gethead = Berita::where('status','=','2')->get(array('_id'));
-        $idlama = $gethead[0]->_id;
-        $ganti = Berita::find($idlama);
-        $ganti->status = "1";
-        $ganti->save();
+        if (isset($gethead[0]->_id)) {
+            $idlama = $gethead[0]->_id;
+            $ganti = Berita::find($idlama);
+            $ganti->status = "1";
+            $ganti->save();
+        }
         
         $berita = Berita::find($id);
         $berita->status = "2";

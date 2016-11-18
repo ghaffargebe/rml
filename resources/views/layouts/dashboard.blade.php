@@ -85,6 +85,7 @@
       <div class="main_container">
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
+
             <div class="navbar nav_title" style="border: 0;">
               <a href="" class="site_title"><img src="{{URL::asset('images/iconwhite.png')}}" style="width:42px;margin-top:-6px;margin-left:3px">&nbsp;&nbsp;<span>RISTEKDIKTI</span>
               </a>
@@ -102,7 +103,7 @@
                   @if(Auth::user()->jenis == 0)
                   <li><a href="{{ URL::to('organisasi') }}"><i class="fa fa-group"></i> Manajemen Instansi</a></li>
                   <li><a href="{{ URL::to('user') }}"><i class="fa fa-user"></i> Manajemen Pengguna</a></li>
-                  <li><a href="{{ URL::to('imageslider') }}"><i class="fa fa-image"></i> Manajemen Image Slider</a></li>
+                  <li><a href="{{ URL::to('slider') }}"><i class="fa fa-image"></i> Manajemen Image Slider</a></li>
                   @endif
                 </ul>
               </div>
@@ -141,6 +142,7 @@
         <footer>
           <div class="pull-right">
             RML - RISTEK DIKTI
+
           </div>
           <div class="clearfix"></div>
         </footer>

@@ -9,7 +9,7 @@
                 <h3 class="h3topclear"><b>Berita</b></h3>
                 <p style="margin-bottom: 24px;">Terkait Sistem Repository Metadata Library</p>
             </div>
-            <div class="col-sm-8" id="article">
+            <div class="col-sm-12" id="article">
                 <div class="back-white col-sm-12">
                     <h3>{{ $berita->judul }} <small class="pull-right">{{ date('l, d F Y', strtotime($berita->tanggal)) }}</small></h3>
                     <div class="separator"></div>
@@ -19,9 +19,9 @@
                     {{ $berita->isi }}
                 </div>
             </div>
-            <div class="col-sm-4">
+            <!-- <div class="col-sm-4">
                 <div class="back-white" style="height: 360px; "></div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>

@@ -9,7 +9,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-8">
+                <div class="col-sm-12">
                     <div class="back-white" style="margin-bottom: 24px; padding: 24px;">
                         
                         <div class="row">
@@ -36,9 +36,9 @@
                         </table>
                     </div>
                 </div>
-                <div class="col-sm-4">
+                <!-- <div class="col-sm-4">
                     <div class="back-white" style="height: 400px; margin-bottom: 24px"></div>
-                </div>
+                </div> -->
             </div>
         </div>
 @endsection

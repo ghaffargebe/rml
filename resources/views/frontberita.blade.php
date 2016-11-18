@@ -9,7 +9,7 @@
                 <h3 class="h3topclear"><b>Berita</b></h3>
                 <p style="margin-bottom: 24px;">Terkait Sistem Repository Metadata Library</p>
             </div>
-            <div class="row col-sm-8">
+            <div class="row col-sm-12">
                 @foreach($berita as $key)
                 <div class="back-white col-sm-12">
                     <h3>{{ $key->judul }}</h3>
@@ -18,9 +18,9 @@
                 </div>
                 @endforeach
             </div>
-            <div class="col-sm-4">
+            <!-- <div class="col-sm-4">
                 <div class="back-white" style="height: 360px; "></div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
