@@ -52,4 +52,5 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('berita/{id}/headline', 'beritaController@headline');
 
     Route::resource('slider','sliderController');
+    Route::get('getSlider','sliderController@getSlider');
 });

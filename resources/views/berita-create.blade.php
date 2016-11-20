@@ -64,7 +64,12 @@
                             <label for="gambar" class="col-md-4 control-label">Gambar (JPG, JPEG, PNG)</label>
 
                             <div class="col-md-6">
-                                <input type="file" name="gambar" class="form-control">
+                                <input id="file" type="file" name="gambar" class="form-control">
+                                @if(isset($berita->filename))
+                                <img id="blah" src="{{ url('gambarberita/'.$berita->filename) }}" alt="your image" class="img img-responsive" />
+                                @else
+                                <img id="blah" src="#" alt="your image" class="img img-responsive" style="display:none" />
+                                @endif
 
                                 @if ($errors->has('gambar'))
                                     <span class="help-block">
@@ -128,5 +133,23 @@
           tinymce.init({
             selector: '.mytextarea'
           });
+
+          function readURL(input) {
+
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#blah').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            $("#file").change(function(){
+                $('#blah').show();
+                readURL(this);
+            });
         </script>
         @endpush

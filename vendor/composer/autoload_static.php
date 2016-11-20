@@ -413,6 +413,7 @@ class ComposerStaticInitebf22e74a404e0bd22d9b042bb778a2d
         'CreateImageslider' => __DIR__ . '/../..' . '/database/migrations/2016_11_14_000232_Create_Imageslider.php',
         'CreateOrganisasi' => __DIR__ . '/../..' . '/database/migrations/2016_11_14_072400_Create_Organisasi.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+        'CreateSlider' => __DIR__ . '/../..' . '/database/migrations/2016_11_18_074620_Create_Slider.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
         'DOMPDF' => __DIR__ . '/..' . '/dompdf/dompdf/include/dompdf.cls.php',
         'DOMPDF_Exception' => __DIR__ . '/..' . '/dompdf/dompdf/include/dompdf_exception.cls.php',

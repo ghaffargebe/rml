@@ -5,6 +5,10 @@ namespace RML\Http\Controllers;
 use Illuminate\Http\Request;
 
 use RML\Http\Requests;
+use RML\Slider;
+use Datatables;
+use Form;
+use URL;
 
 class sliderController extends Controller
 {
@@ -15,7 +19,26 @@ class sliderController extends Controller
      */
     public function index()
     {
-        
+        return view('slider');
+    }
+
+    public function getSlider(){
+        $slider = Slider::get();
+        return Datatables::of($slider)
+        ->editColumn('filename', function($slider){
+            return '<img src="'.URL::asset("gambarslider/".$slider->filename).'" class="img img-responsive" />';
+        })
+        ->addColumn('action',function($slider){
+            $button  = '<div class="btn-group">';
+            $button .=  '<a class="btn btn-warning btn-xs" href="'. URL::to('slider/' . $slider->_id . '/edit'). '"><i class="fa fa-pencil"></i>&nbsp;Edit</a>';
+            $button .=  Form::open(array('url' => 'slider/' .$slider->id . '', 'class' => 'pull-right')).
+                                ''. Form::hidden("_method", "DELETE") .
+                                ''. Form::submit("Delete", array("class" => "btn btn-danger btn-xs btn-delete")) .
+                                ''. Form::close();
+            $button .=  '</div>';
+            return $button;
+        })
+        ->make(true);
     }
 
     /**
@@ -25,7 +48,7 @@ class sliderController extends Controller
      */
     public function create()
     {
-        //
+        return view('slider-create');
     }
 
     /**
@@ -36,7 +59,32 @@ class sliderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            // 'gambar'=> 'mimes:jpg,jpeg,png'
+        ]);
+
+        if ($request->hasFile('gambar')) {
+            $gambar = $request->file('gambar');
+            $now = date("YmdHis");
+
+            $tipe = $gambar->getClientOriginalExtension();
+            $filenameori = $gambar->getClientOriginalName();
+            $fileName = $now.md5($filenameori).'.'.$tipe;
+            $gambar->move(
+                public_path() . '/gambarslider/', $fileName
+            );
+        }
+
+        $slider = new Slider;
+        if ($request->hasFile('gambar')) {
+            $slider->filename = $fileName;
+            $slider->filenameori = $filenameori;
+            $slider->tipe = $tipe;
+        }
+        $slider->save();
+
+        flash('Gambar slider berhasil ditambahkan !','success');
+        return redirect('/slider');
     }
 
     /**

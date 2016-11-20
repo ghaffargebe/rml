@@ -6,22 +6,40 @@
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
-    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    @if(isset($slider))
+     <?php $x = 0; ?>
+      @foreach($slider as $key)
+        @if ($x==0)
+        <li data-target="#carousel-example-generic" data-slide-to="{{ $x }}" class="active"></li>
+        @else
+        <li data-target="#carousel-example-generic" data-slide-to="{{ $x }}"></li>
+        @endif
+      <?php $x++ ?>
+      @endforeach
+    @endif
   </ol>
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
-    <div class="item active">
-      <img src="{{ asset('images/slider1.jpg')}}" alt="slider1" style="height: 280px; width: 1500px">
-      <div class="carousel-caption">
-      </div>
-    </div>
-    <div class="item ">
-      <img src="{{ asset('images/slider2.jpg')}}" alt="slider2">
-      <div class="carousel-caption">
-      </div>
-    </div>
+    @if(isset($slider))
+     <?php $x = 0; ?>
+      @foreach($slider as $key)
+        @if ($x == 0)
+          <div class="item active">
+            <img src="{{ asset('gambarslider/'.$key->filename )}}" alt="slider{{ $x }}" style="height: 280px; width: 1500px">
+            <div class="carousel-caption">
+            </div>
+          </div>
+          @else
+          <div class="item">
+            <img src="{{ asset('gambarslider/'.$key->filename )}}" alt="slider{{ $x }}">
+            <div class="carousel-caption">
+            </div>
+          </div>
+          @endif
+      <?php $x++ ?>
+      @endforeach
+    @endif
   </div>
 
   <!-- Controls -->

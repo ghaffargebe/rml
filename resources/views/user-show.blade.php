@@ -22,7 +22,7 @@
                           <div class="profile_img col-md-5 col-sm-12 col-xs-12">
                             <div id="crop-avatar">
                               <!-- Current avatar -->
-                              <img class="img-responsive avatar-view" src="{{ asset('/img/pui.png') }}" alt="Avatar" title="Change the avatar">
+                              <img class="img-responsive avatar-view" src="{{ asset('/images/'.Auth::user()->filename) }}" alt="Avatar" title="Change the avatar">
                             </div>
                           </div>
                           <div class="col-md-7 col-sm-12 col-xs-12">
@@ -42,6 +42,7 @@
                                 <td> :&nbsp; {{ $user->email}}</td>
                               </tr>
                             </table>
+                            <a class="btn btn-warning btn-xs" href="{{ URL::to('user/'.Auth::user()->_id.'/edit') }}"><i class="fa fa-pencil"></i>&nbsp;Edit</a>
                           </div>
                         </div>
 

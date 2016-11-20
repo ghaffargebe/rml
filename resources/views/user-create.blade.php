@@ -27,9 +27,9 @@
                       @endif
 
                         @if(isset($user))
-                            {{ Form::model($user, ['url' => ['user', $user->_id], 'method' => 'patch', 'class' => 'form-horizontal', 'role' => 'form']) }}
+                            {{ Form::model($user, ['url' => ['user', $user->_id], 'method' => 'patch', 'class' => 'form-horizontal', 'role' => 'form', 'enctype' => "multipart/form-data"]) }}
                         @else
-                            {{ Form::open(['url' => 'user', 'class' => 'form-horizontal', 'role' => 'form']) }}
+                            {{ Form::open(['url' => 'user', 'class' => 'form-horizontal', 'role' => 'form', 'enctype' => "multipart/form-data"]) }}
                         @endif
 
                         <div class="form-group{{ $errors->has('organisasi') ? ' has-error' : '' }}">
@@ -106,6 +106,24 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('file') ? ' has-error' : '' }}">
+                            <label for="file" class="col-md-4 control-label">Photo Profile</label>
+
+                            <div class="col-md-6">
+                                <input id="file" type="file" name="file" class="form-control">
+                                @if(isset($user))
+                                <img id="blah" src="{{ url('images/'.$user->filename) }}" alt="your image" class="img img-responsive" />
+                                @else
+                                <img id="blah" src="#" alt="your image" class="img img-responsive" style="display:none" />
+                                @endif
+                                @if ($errors->has('file'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('file') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <!-- Field Jenis dan Lembaga tingkat User Biasa -->
                         <input type="hidden" name="jenis" value="1">
                         <!-- END Field Jenis dan Lembaga tingkat User Biasa -->
@@ -142,5 +160,23 @@
           $(document).ready(function() {
             $('#nice-select').niceSelect();
           });
+
+          function readURL(input) {
+
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#blah').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            $("#file").change(function(){
+                $('#blah').show();
+                readURL(this);
+            });
         </script>
         @endpush

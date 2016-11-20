@@ -175,7 +175,7 @@ class beritaController extends Controller
             $filenameori = $gambar->getClientOriginalName();
             $fileName = $now.md5($filenameori).'.'.$tipe;
             $gambar->move(
-                base_path() . '/gambarberita/', $fileName
+                public_path() . '/gambarberita/', $fileName
             );
         }
         

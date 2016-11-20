@@ -25,6 +25,7 @@ return array(
     'CreateImageslider' => $baseDir . '/database/migrations/2016_11_14_000232_Create_Imageslider.php',
     'CreateOrganisasi' => $baseDir . '/database/migrations/2016_11_14_072400_Create_Organisasi.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+    'CreateSlider' => $baseDir . '/database/migrations/2016_11_18_074620_Create_Slider.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'DOMPDF' => $vendorDir . '/dompdf/dompdf/include/dompdf.cls.php',
     'DOMPDF_Exception' => $vendorDir . '/dompdf/dompdf/include/dompdf_exception.cls.php',

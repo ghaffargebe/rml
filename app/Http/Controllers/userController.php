@@ -14,6 +14,7 @@ use Hash;
 use URL;
 use Form;
 use RML\Organisasi;
+use Auth;
 
 class userController extends Controller
 {
@@ -76,12 +77,29 @@ class userController extends Controller
             'jenis' => 'required|max:255',
         ]);
 
+        if ($request->hasFile('file')) {
+            $gambar = $request->file('file');
+            $now = date("YmdHis");
+
+            $tipe = $gambar->getClientOriginalExtension();
+            $filenameori = $gambar->getClientOriginalName();
+            $fileName = $now.md5($filenameori).'.'.$tipe;
+            $gambar->move(
+                public_path() . '/images/', $fileName
+            );
+        }
+
         $user = new User;
         $user->organisasi = $_POST['organisasi'];
         $user->username = $_POST['username'];
         $user->email = $_POST['email'];
         $user->password = Hash::make($_POST['password']);
         $user->jenis = $_POST['jenis'];
+        if ($request->hasFile('file')) {
+            $user->filename = $fileName;
+            $user->filenameori = $filenameori;
+            $user->tipe = $tipe;
+        }
         $user->save();
 
         flash('Data Berhasil Ditambahkan !', 'success');
@@ -126,22 +144,43 @@ class userController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'organisasi' => 'required',
-            'username' => 'required|max:255',
-            'email' => 'required|email|max:255',
-            'password' => 'min:6|confirmed',
-            'jenis' => 'required|max:255',
-        ]);
+        if (Auth::user()->jenis != 0) {
+            $this->validate($request, [
+                'organisasi' => 'required',
+                'username' => 'required|max:255',
+                'email' => 'required|email|max:255',
+                'password' => 'min:6|confirmed',
+                'jenis' => 'required|max:255',
+            ]);
+        }
+
+        if ($request->hasFile('file')) {
+            $gambar = $request->file('file');
+            $now = date("YmdHis");
+
+            $tipe = $gambar->getClientOriginalExtension();
+            $filenameori = $gambar->getClientOriginalName();
+            $fileName = $now.md5($filenameori).'.'.$tipe;
+            $gambar->move(
+                public_path() . '/images/', $fileName
+            );
+        }
 
         $user = User::find($id);
-        $user->organisasi = $_POST['organisasi'];
+        if (Auth::user()->jenis != 0) {
+            $user->organisasi = $_POST['organisasi'];
+            $user->jenis = $_POST['jenis'];
+        }
         $user->username = $_POST['username'];
         $user->email = $_POST['email'];
         if (isset($_POST['password'])) {
             $user->password = Hash::make($_POST['password']);
         }
-        $user->jenis = $_POST['jenis'];
+        if ($request->hasFile('file')) {
+            $user->filename = $fileName;
+            $user->filenameori = $filenameori;
+            $user->tipe = $tipe;
+        }
         $user->save();
 
         flash('Data Berhasil Diubah !', 'success');

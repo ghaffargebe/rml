@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use RML\Organisasi;
 use RML\Berita;
 use RML\Dataset;
+use RML\Slider;
 use Datatables;
 use URL;
 
@@ -31,7 +32,8 @@ class HomeController extends Controller
     {
         $berita = Berita::where('status','=','2')->get();
         $org = Organisasi::get();
-        return view('welcome')->with(compact('berita','org'));
+        $slider = Slider::get();
+        return view('welcome')->with(compact('berita','org','slider'));
     }
 
     public function profil($org)
