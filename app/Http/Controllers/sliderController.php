@@ -106,7 +106,8 @@ class sliderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $slider = Slider::find($id);
+        return view('slider-create')->with('slider',$slider);
     }
 
     /**

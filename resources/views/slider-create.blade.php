@@ -36,8 +36,12 @@
                             <label for="gambar" class="col-md-4 control-label">Gambar (Resolusi : 1500x300 px)</label>
 
                             <div class="col-md-6">
-                                <input type="file" name="gambar" class="form-control" required>
-
+                                <input id="file" type="file" name="gambar" class="form-control" required>
+                                @if(isset($slider))
+                                <img id="blah" src="{{ url('gambarslider/'.$slider->filename) }}" alt="your image" class="img img-responsive" />
+                                @else
+                                <img id="blah" src="#" alt="your image" class="img img-responsive" style="display:none" />
+                                @endif
                                 @if ($errors->has('gambar'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('gambar') }}</strong>
@@ -70,3 +74,25 @@
         <!-- /page content -->
 
         @endsection
+
+        @push('scripts')
+        <script>
+        function readURL(input) {
+
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#blah').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            $("#file").change(function(){
+                $('#blah').show();
+                readURL(this);
+            });
+        </script>
+        @endpush

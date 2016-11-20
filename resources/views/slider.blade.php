@@ -24,7 +24,7 @@
                           </div>
                       @endif
                         <div class="row">
-                          <a class="btn btn-primary" href="/slider/create" role="button"><i class="fa fa-plus" aria-hidden="true"></i> Tambah Berita</a>
+                          <a class="btn btn-primary" href="/slider/create" role="button"><i class="fa fa-plus" aria-hidden="true"></i> Tambah Gambar</a>
                       </div>
                         <table id="users-table" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                           <thead>
