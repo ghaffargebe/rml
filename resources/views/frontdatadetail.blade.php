@@ -57,7 +57,7 @@
                         <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
                           <h3>How to</h3>
                             <div class="separator"></div>
-                          <p>{{ $howto }}</p>
+                          <?php print_r($dataset->howto);?>
                         </div>
                         @endif
                       </div>
