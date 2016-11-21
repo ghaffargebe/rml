@@ -24,7 +24,7 @@
                         <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
                             <h3>{{ $dataset->organisasi }}</h3>
                             <div class="separator"></div>
-                            <p>{{ $d }}</p>
+                            <p>{{ strip_tags($d) }}</p>
                             <div class="separator"></div>
                             @if(isset($dataset->linkapi))
                             Link : {{ $dataset->linkapi }}
