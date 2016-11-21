@@ -16,7 +16,7 @@
                     @if(isset($berita->filename))
                     <div class="col-md-4"><img src="{{ URL::asset('gambarberita/'.$berita->filename) }}" alt="{{ $berita->judul }}" class="img img-responsive" /></div>
                     @endif
-                    {{ $berita->isi }}
+                    <?php print_r($berita->isi) ?>
                 </div>
             </div>
             <!-- <div class="col-sm-4">

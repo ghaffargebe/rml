@@ -14,7 +14,7 @@
                 <div class="back-white col-sm-12">
                     <h3>{{ $key->judul }}</h3>
                     <div class="separator"></div>
-                    {{ substr(substr(str_replace(["<p>","</p>"],["",""],$key->isi), 0, 50), 0, strrpos(substr(str_replace(["<p>","</p>"],["",""],$key->isi), 0, 50), ' ')) }}... <a href="{{ url('frontberitadetail/'.$key->_id) }}">Read More</a>
+                    <?php print_r(substr(strip_tags($key->isi), 0, 70)); ?>... <a href="{{ url('frontberitadetail/'.$key->_id) }}">Read More</a>
                 </div>
                 @endforeach
             </div>

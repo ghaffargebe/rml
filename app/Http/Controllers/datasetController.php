@@ -115,6 +115,7 @@ class datasetController extends Controller
 
         $pecah = explode("/", $_POST['tanggal']);
         $tanggal = $pecah[2].'-'.$pecah[1].'-'.$pecah[0];
+
         $dataset = new Dataset;
         $dataset->organisasi = $_POST['organisasi'];
         $dataset->deskripsi = $_POST['deskripsi'];

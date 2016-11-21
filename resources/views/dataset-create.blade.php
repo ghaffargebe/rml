@@ -128,7 +128,7 @@
                                 @else
                                 <a href="#" class="btn btn-info" onClick="tambahFile()"><i class="fa fa-plus"></i>&nbsp;Tambah File</a>
                                 <button type="submit" class="btn btn-warning">
-                                    <i class="fa fa-btn fa-pencil"></i> Edit
+                                    <i class="fa fa-btn fa-pencil"></i> Save Edit
                                 </button>
                                 @endif
                             </div>
@@ -162,7 +162,12 @@
           });
 
           function tambahFile(){
-            
+            $('#fileBaru').append('<div class="form-group">'
+                                 +'<label for="file" class="col-md-4 control-label">File Upload</label>'
+                                 +'<div class="col-md-6">'
+                                        +'<input type="file" name="file[]" class="form-control">'
+                                    +'</div>'
+                                +'</div>')
           }
         </script>
         @endpush

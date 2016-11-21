@@ -16,7 +16,7 @@
                     @if(isset($org[0]->fileName))
                     <div class="col-md-4"><img src="{{ url('img/'.$org[0]->fileName) }}" alt="{{ $org[0]->name }}" class="img img-responsive" /></div>
                     @endif
-                    {{ $org[0]->deskripsi }}
+                    <?php print_r($org[0]->deskripsi); ?>
                 </div>
             </div>
             <!-- <div class="col-sm-4">
