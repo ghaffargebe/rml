@@ -93,8 +93,8 @@ class HomeController extends Controller
     public function frontdatadetail($id)
     {
         $dataset = Dataset::find($id);
-        $d = str_replace("<p>", "", $dataset->deskripsi);
-        $d = str_replace("</p>", "", $d);
+        // $d = str_replace("<p>", "", $dataset->deskripsi);
+        // $d = str_replace("</p>", "", $d);
         $howto = str_replace("<p>", "", $dataset->howto);
         $howto = str_replace("</p>", "", $howto);
 
