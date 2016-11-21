@@ -60,8 +60,8 @@ class HomeController extends Controller
             return date("d/m/Y", strtotime($dataset->tanggal));
         })
         ->editColumn('deskripsi', function($dataset){
-            $stringCut = substr($dataset->deskripsi, 0, 50);
-            $string = substr($stringCut, 0, strrpos($stringCut, ' ')).'... <a href="'.URL::to('frontdatadetail/'.$dataset->_id).'">Read More</a>';
+            $stringCut = strip_tags($dataset->deskripsi);
+            $string = substr($stringCut, 0, 70).'... <a href="'.URL::to('frontdatadetail/'.$dataset->_id).'">Read More</a>';
             return $string;
         })
         ->editColumn('tipe', function($dataset){

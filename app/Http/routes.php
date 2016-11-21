@@ -13,7 +13,7 @@
 Route::get('/', 'HomeController@index');
 Route::get('tes', function () {
     // return phpinfo() ;
-    $a = Hash::make('bismillah');
+    $a = Hash::make('dikti123');
     echo $a;
 });
 

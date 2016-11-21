@@ -46,8 +46,8 @@ class datasetController extends Controller
             return $tipe;
         })
         ->editColumn('deskripsi', function($dataset){
-            $stringCut = substr($dataset->deskripsi, 0, 50);
-            $string = substr($stringCut, 0, strrpos($stringCut, ' ')).'...';
+            $stringCut = strip_tags($dataset->deskripsi);
+            $string = substr($stringCut, 0, 50).'...';
             return $string;//substr($dataset->deskripsi, 0,30).' ...';
         })
         ->addColumn('action', function ($dataset) {
