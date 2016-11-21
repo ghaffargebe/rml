@@ -27,7 +27,7 @@
                             <?php print_r($dataset->deskripsi);?>
                             <div class="separator"></div>
                             @if(isset($dataset->linkapi))
-                            Link : {{ $dataset->linkapi }}
+                            Link : <a href="{{ $dataset->linkapi }}">{{ $dataset->linkapi }}</a>
                             @endif
                             @if(isset($dataset->filename))
                             <div class="attachment">
