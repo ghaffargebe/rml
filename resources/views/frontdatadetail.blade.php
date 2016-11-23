@@ -16,7 +16,9 @@
                         <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Description</a>
                         </li>
                         @if(isset($dataset->howto))
-                        <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">How To</a>
+                        <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Data Description</a>
+                        </li>
+                        <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Service Description</a>
                         </li>
                         @endif
                       </ul>
@@ -55,7 +57,12 @@
                         </div>
                         @if(isset($dataset->howto))
                         <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
-                          <h3>How to</h3>
+                          <h3>Data Description</h3>
+                            <div class="separator"></div>
+                          <?php print_r($dataset->howto);?>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+                          <h3>Service Description</h3>
                             <div class="separator"></div>
                           <?php print_r($dataset->howto);?>
                         </div>

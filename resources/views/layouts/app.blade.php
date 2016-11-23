@@ -6,7 +6,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		
-		<title>Repositori Metadata Library - Ristekdikti</title>
+		<title>Repositori Metadata dan Direktori Layanan - Ristekdikti</title>
 		<link rel="icon" href="static/img/kemenristekdikti.png">
 		
 		<!-- <link rel="stylesheet" type="text/css" href="static/css/bootstrap.min.css"> -->
@@ -38,7 +38,7 @@
 					<div style="float:left">
 						<img src="{{URL::asset('img/kemenristekdikti.png')}}" id="img-head">
 					</div>
-					<h3>Repository Metadata Library</h3>
+					<h3>Repository Metadata dan Direktori Layanan</h3>
 					<p>Kementerian Riset Teknologi dan Pendidikan Tinggi</p>
 				</div>
 			</div>
