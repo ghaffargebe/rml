@@ -119,6 +119,7 @@ class datasetController extends Controller
         $dataset = new Dataset;
         $dataset->organisasi = $_POST['organisasi'];
         $dataset->deskripsi = $_POST['deskripsi'];
+        $dataset->data_desc = $_POST['data_desc'];
         $dataset->tanggal = $tanggal;
         if (isset($_POST['linkapi'])) {
             $dataset->linkapi = $_POST['linkapi'];
@@ -201,6 +202,7 @@ class datasetController extends Controller
         $dataset->tanggal = $tanggal;
         $dataset->linkapi = $_POST['linkapi'];
         $dataset->howto = $_POST['howto'];
+        $dataset->data_desc = $_POST['data_desc'];
         if ($request->hasFile('file')) {
             $dataset->filename = $fileName;
             $dataset->filenameori = $filenameori;

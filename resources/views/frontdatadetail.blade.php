@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-sm-12 h3topclear">
                 <h3 class="h3topclear"><b>Dataset Detail</b></h3>
-                <p style="margin-bottom: 24px;">Terkait Sistem Repository Metadata Library</p>
+                <p style="margin-bottom: 24px;">Terkait Sistem Repository Metadata dan Direktori Layanan</p>
             </div>
             <div class="col-sm-12" id="article">
                 <div class="back-white col-sm-12">
@@ -59,7 +59,7 @@
                         <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
                           <h3>Data Description</h3>
                             <div class="separator"></div>
-                          <?php print_r($dataset->howto);?>
+                          <?php print_r($dataset->data_desc);?>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
                           <h3>Service Description</h3>

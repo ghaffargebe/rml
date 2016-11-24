@@ -88,8 +88,22 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('data_desc') ? ' has-error' : '' }}">
+                            <label for="data_desc" class="col-md-4 control-label">Deskripsi Data</label>
+
+                            <div class="col-md-6">
+                                <textarea id="data_desc" class="form-control mytextarea" name="data_desc" style="resize:vertical;height: 150px;">{{ (isset($dataset)) ?  $dataset->data_desc  : '' }}</textarea>
+
+                                @if ($errors->has('data_desc'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('data_desc') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('howto') ? ' has-error' : '' }}">
-                            <label for="howto" class="col-md-4 control-label">How to</label>
+                            <label for="howto" class="col-md-4 control-label">Deskripsi Layanan</label>
 
                             <div class="col-md-6">
                                 <textarea id="howto" class="form-control mytextarea" name="howto" style="resize:vertical;height: 150px;">{{ (isset($dataset)) ?  $dataset->howto  : '' }}</textarea>
