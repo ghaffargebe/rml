@@ -56,9 +56,6 @@ class HomeController extends Controller
         }
 
         return Datatables::of($dataset)
-        ->editColumn('tanggal', function($dataset){
-            return date("d/m/Y", strtotime($dataset->tanggal));
-        })
         ->editColumn('deskripsi', function($dataset){
             $stringCut = strip_tags($dataset->deskripsi);
             $string = substr($stringCut, 0, 70).'... <a href="'.URL::to('frontdatadetail/'.$dataset->_id).'">Read More</a>';
@@ -86,6 +83,9 @@ class HomeController extends Controller
                 $ret = '<span class="label label-info">Link API</span>';
             }
             return $ret;
+        })
+        ->add_column('aksi', function($dataset){
+            return '<a href="'.URL::to('frontdatadetail/'.$dataset->_id).'" class="btn btn-info">Detail</a>';
         })
         ->make(true);
     }

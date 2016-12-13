@@ -13,60 +13,115 @@
                 <div class="back-white col-sm-12">
                     <div class="" role="tabpanel" data-example-id="togglable-tabs">
                       <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Description</a>
+                        <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">System Description</a>
                         </li>
-                        @if(isset($dataset->howto))
                         <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Data Description</a>
                         </li>
                         <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Service Description</a>
                         </li>
-                        @endif
                       </ul>
                       <div id="myTabContent" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
-                            <h3>{{ $dataset->organisasi }}</h3>
+                          <small>( PERATURAN MENTERI KOMUNIKASI DAN INFORMATIKA REPUBLIK INDONESIA Pasal 8 Ayat (2) dan (3) )</small>
+                            <h3>Deskripsi Sistem</h3>
+
+                            <h4>Instansi Penyedia Layanan : {{ $dataset->organisasi }}</h4>
+                            
+                            <h4>Alamat Instansi</h4>
                             <div class="separator"></div>
-                            <?php print_r($dataset->deskripsi);?>
+                            <p><?php print_r($dataset->alamat);?></p>
+                            <p><?php print_r($dataset->alamat_web);?></p>
+
+                            <h4>Pejabat Pendaftar Sistem Elektronik</h4>
                             <div class="separator"></div>
-                            @if(isset($dataset->linkapi))
-                            Link : <a href="{{ $dataset->linkapi }}">{{ $dataset->linkapi }}</a>
-                            @endif
-                            @if(isset($dataset->filename))
-                            <div class="attachment">
-                                    <p>
-                                      <span><i class="fa fa-paperclip"></i> {{count($filename)}} files — </span>
-                                      <a href="#">Download all files</a> |
-                                    </p>
-                                    <ul>
-                                    @for($i = 0; $i < count($filename);$i++)
-                                      <li>
+                            <p><?php print_r($dataset->pejabat);?></p>
 
-                                        <div class="file-name">
-                                          {{ $filenameori[$i] }} 
-                                        </div>
+                            <h4>Deskripsi Layanan</h4>
+                            <div class="separator"></div>
+                            <p><?php print_r($dataset->deskripsi);?></p>
 
-                                        <div class="links">
-                                          <a href="{{url('download/'.$filename[$i])}}">Download</a>
-                                        </div>
-                                      </li>
-                                    @endfor
+                            <h4>Ruang Lingkup Layanan</h4>
+                            <div class="separator"></div>
+                            <p><?php print_r($dataset->ruang_lingkup);?></p>
 
-                                    </ul>
-                                  </div>
-                            @endif
+                            <h4>Jenis Layanan</h4>
+                            <div class="separator"></div>
+                            <p><?php print_r($dataset->jenis);?></p>
+
+                            <h4>Fungsi Utama Layanan</h4>
+                            <div class="separator"></div>
+                            <p><?php print_r($dataset->fungsi_utama);?></p>
+
+                            <h4>Sasaran Layanan</h4>
+                            <div class="separator"></div>
+                            <p><?php print_r($dataset->sasaran);?></p>
+
+                            <h4>Penanggungjawab Layanan</h4>
+                            <div class="separator"></div>
+                            <p><?php print_r($dataset->penanggungjawab);?></p>
+
+                            <h4>Kategori Sistem Elektronik</h4>
+                            <div class="separator"></div>
+                            <p><?php print_r($dataset->kategori);?></p>
+                            
                         </div>
-                        @if(isset($dataset->howto))
+
                         <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
                           <h3>Data Description</h3>
-                            <div class="separator"></div>
-                          <?php print_r($dataset->data_desc);?>
+                          <div class="separator"></div>
+                          <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                              <th>Jenis Data</th>
+                              <th>Klasifikasi Data</th>
+                            </tr>
+                            </thead>
+                            <tr>
+                              <td>{{ $dataset->jenis_data }}</td>
+                              <td>{{ $dataset->klasifikasi }}</td>
+                            </tr>
+                          </table>
+                          
+                        @if(isset($dataset->filename))
+                        <div class="attachment">
+                                <p>
+                                  <span><i class="fa fa-paperclip"></i> {{count($filename)}} files — </span>
+                                  <a href="#">Download all files</a> |
+                                </p>
+                                <ul>
+                                @for($i = 0; $i < count($filename);$i++)
+                                  <li>
+
+                                    <div class="file-name">
+                                      {{ $filenameori[$i] }} 
+                                    </div>
+
+                                    <div class="links">
+                                      <a href="{{url('download/'.$filename[$i])}}">Download</a>
+                                    </div>
+                                  </li>
+                                @endfor
+
+                                </ul>
+                              </div>
+                        @endif
                         </div>
+
                         <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
                           <h3>Service Description</h3>
-                            <div class="separator"></div>
-                          <?php print_r($dataset->howto);?>
+                            <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                              <th>Link API</th>
+                              <th>Cara</th>
+                            </tr>
+                            </thead>
+                            <tr>
+                              <td>{{ $dataset->linkapi }}</td>
+                              <td>{{ $dataset->cara }}</td>
+                            </tr>
+                          </table>
                         </div>
-                        @endif
                       </div>
                     </div>
 

@@ -27,10 +27,10 @@
                         <table id="table" class="table table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
-                                    <th>Penyedia</th>
-                                    <th>Deskripsi</th>
-                                    <th>Tanggal</th>
-                                    <th>Jenis</th>
+                                    <th>Instansi Penyedia Layanan</th>
+                                    <th>Deskripsi Layanan</th>
+                                    <th>Jenis Data</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                         </table>
@@ -60,8 +60,8 @@ var table;
                     // { data: '_id', name: '_id' },
                     { data: 'organisasi', name: 'organisasi' },
                     { data: 'deskripsi', name: 'deskripsi' },
-                    { data: 'tanggal', name: 'tanggal' },
                     { data: 'tipe', name: 'tipe' },
+                    { data: 'aksi', name: 'aksi' },
             ]
             });
           });
@@ -80,8 +80,8 @@ var table;
                     // { data: '_id', name: '_id' },
                     { data: 'organisasi', name: 'organisasi' },
                     { data: 'deskripsi', name: 'deskripsi' },
-                    { data: 'tanggal', name: 'tanggal' },
                     { data: 'tipe', name: 'tipe' },
+                    { data: 'aksi', name: 'aksi' },
             ]
             });
         }
