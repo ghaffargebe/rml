@@ -35,7 +35,6 @@
                               <!-- <th>ID</th> -->
                               <th>Nama Lembaga</th>
                               <th>Deskripsi</th>
-                              <th>Tanggal</th>
                               <th>Tipe</th>
                               <th>Aksi</th>
                             </tr>
@@ -64,7 +63,6 @@
                     // { data: '_id', name: '_id' },
                     { data: 'organisasi', name: 'organisasi' },
                     { data: 'deskripsi', name: 'deskripsi' },
-                    { data: 'tanggal', name: 'tanggal' },
                     { data: 'tipe', name: 'tipe' },
                     { data: 'action', name: 'action' },
                 ]

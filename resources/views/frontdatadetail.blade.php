@@ -118,7 +118,7 @@
                             </thead>
                             <tr>
                               <td>{{ $dataset->linkapi }}</td>
-                              <td>{{ $dataset->cara }}</td>
+                              <td>{{ $dataset->howto }}</td>
                             </tr>
                           </table>
                         </div>
