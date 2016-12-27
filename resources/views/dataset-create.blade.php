@@ -51,7 +51,7 @@
                                     <label for="organisasi" class="col-md-4 control-label">Instansi Penyedia Layanan</label>
 
                                     <div class="col-md-6">
-                                        <input id="organisasi" type="text" class="form-control" name="organisasi" value="{{ Auth::user()->organisasi }}" readonly>
+                                        <input id="organisasi" type="text" class="form-control" name="organisasi" value="{{ (Auth::user()->organisasi != '') ? Auth::user()->organisasi : $dataset->organisasi}}" readonly>
 
                                         @if ($errors->has('organisasi'))
                                             <span class="help-block">
@@ -203,36 +203,91 @@
                         </div>
                         <div class="tab-pane" id="data">
                             <p class="lead">Tambah Dataset - Deskripsi Data</p>
+                            @if(!isset($dataset))
+                            <input type="hidden" id="nomor_data" value="1">
+                            <center><h4>Jenis Data 1</h4></center>
+                            <div class="form-group">
+                                <label for="nama_data" class="col-md-4 control-label">Nama Data</label>
+                                <div class="col-md-6">
+                                    <input id="nama_data" type="text" class="form-control" name="nama_data[]">
+                                </div>
+                            </div>
 
-                            <div class="form-group{{ $errors->has('jenis_data') ? ' has-error' : '' }}">
+                            <div class="form-group">
                                 <label for="jenis_data" class="col-md-4 control-label">Jenis Data</label>
 
                                 <div class="col-md-6">
-                                    <input id="jenis_data" type="text" class="form-control" name="jenis_data" value="{{ (isset($dataset)) ?  $dataset->jenis_data  : '' }}" >
-
-                                    @if ($errors->has('jenis_data'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('jenis_data') }}</strong>
-                                        </span>
-                                    @endif
+                                    <input id="jenis_data" type="text" class="form-control" name="jenis_data[]" >
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('klasifikasi_data') ? ' has-error' : '' }}">
-                                <label for="klasifikasi_data" class="col-md-4 control-label">Klasifikasi Data</label>
+                            <div class="form-group">
+                                <label for="kategori_data" class="col-md-4 control-label">Kategori Data</label>
+                                <div class="col-md-6">
+                                    <select name="kategori_data[]" id="kategori_data" class="form-control">
+                                        <option value="">== Pilih ==</option>
+                                        <option value="1">Standar</option>
+                                        <option value="2">Rahasia</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="wali_data" class="col-md-4 control-label">Wali Data</label>
 
                                 <div class="col-md-6">
-                                    <input id="klasifikasi_data" type="text" class="form-control" name="klasifikasi_data" value="{{ (isset($dataset)) ?  $dataset->klasifikasi_data  : '' }}" >
-
-                                    @if ($errors->has('klasifikasi_data'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('klasifikasi_data') }}</strong>
-                                        </span>
-                                    @endif
+                                    <input id="wali_data" type="text" class="form-control" name="wali_data[]" >
+                                </div>
+                            </div>
+                            @else
+                            <input type="hidden" id="nomor_data" value="{{count($dataset->nama_data)}}">
+                            @for($i = 0; $i < count($dataset->nama_data) ; $i++)
+                            <center><h4>Jenis Data {{$i+1}}</h4></center>
+                            <div class="form-group">
+                                <label for="nama_data" class="col-md-4 control-label">Nama Data</label>
+                                <div class="col-md-6">
+                                    <input id="nama_data" type="text" class="form-control" name="nama_data[]" value="{{ $dataset->nama_data[$i] }}">
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('file') ? ' has-error' : '' }}">
+                            <div class="form-group">
+                                <label for="jenis_data" class="col-md-4 control-label">Jenis Data</label>
+
+                                <div class="col-md-6">
+                                    <input id="jenis_data" type="text" class="form-control" name="jenis_data[]" value="{{ $dataset->jenis_data[$i] }}">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="kategori_data" class="col-md-4 control-label">Kategori Data</label>
+                                <div class="col-md-6">
+                                    <select name="kategori_data[]" id="kategori_data" class="form-control">
+                                        <option value="">== Pilih ==</option>
+                                        @if($dataset->kategori_data[$i] == "1")
+                                        <option value="1" selected="selected">Standar</option>
+                                        <option value="2">Rahasia</option>
+                                        @elseif($dataset->kategori_data[$i] == "2")
+                                        <option value="1">Standar</option>
+                                        <option value="2" selected="selected">Rahasia</option>
+                                        @else
+                                        <option value="1">Standar</option>
+                                        <option value="2">Rahasia</option>
+                                        @endif
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="wali_data" class="col-md-4 control-label">Wali Data</label>
+
+                                <div class="col-md-6">
+                                    <input id="wali_data" type="text" class="form-control" name="wali_data[]" value="{{ $dataset->wali_data[$i] }}">
+                                </div>
+                            </div>
+                            @endfor
+                            @endif
+
+                            <!-- <div class="form-group{{ $errors->has('file') ? ' has-error' : '' }}">
                                 <label for="file" class="col-md-4 control-label">File Upload</label>
 
                                 <div class="col-md-6">
@@ -244,14 +299,14 @@
                                         </span>
                                     @endif
                                 </div>
-                            </div>
+                            </div> -->
                             <div id="fileBaru"></div>                                
 
                             <div class="form-group">
                                 <div class="col-md-4">
                                 </div>
                                 <div class="col-md-6">
-                                <a href="#" class="btn btn-info" onClick="tambahFile()"><i class="fa fa-plus"></i>&nbsp;Tambah File</a>
+                                <a href="#" class="btn btn-info" onClick="tambahFile()"><i class="fa fa-plus"></i>&nbsp;Tambah Data</a>
                                 </div>
                             </div>
 
@@ -331,12 +386,44 @@
           });
 
           function tambahFile(){
-            $('#fileBaru').append('<div class="form-group">'
-                                 +'<label for="file" class="col-md-4 control-label">File Upload</label>'
-                                 +'<div class="col-md-6">'
-                                        +'<input type="file" name="file[]" class="form-control">'
+            var nomor = $('#nomor_data').val();
+            nomor = parseInt(nomor)+1;
+            $('#nomor_data').val(nomor);
+            $('#fileBaru').append('<center><h4>Jenis Data '+nomor+'</h4></center>'
+                                    +'<div class="form-group">'
+                                    +'<label for="nama_data" class="col-md-4 control-label">Nama Data</label>'
+                                        +'<div class="col-md-6">'
+                                            +'<input id="nama_data" type="text" class="form-control" name="nama_data[]" >'
+                                        +'</div>'
                                     +'</div>'
-                                +'</div>')
+
+                                    +'<div class="form-group">'
+                                        +'<label for="jenis_data" class="col-md-4 control-label">Jenis Data</label>'
+
+                                        +'<div class="col-md-6">'
+                                            +'<input id="jenis_data" type="text" class="form-control" name="jenis_data[]" >'
+                                        +'</div>'
+                                    +'</div>'
+
+                                    +'<div class="form-group">'
+                                        +'<label for="kategori_data" class="col-md-4 control-label">Kategori Data</label>'
+
+                                        +'<div class="col-md-6">'
+                                            +'<select name="kategori_data[]" id="kategori_data" class="form-control" required>'
+                                                +'<option value="">== Pilih ==</option>'
+                                                +'<option value="1">Standar</option>'
+                                                +'<option value="2">Rahasia</option>'
+                                            +'</select>'
+                                        +'</div>'
+                                    +'</div>'
+
+                                    +'<div class="form-group">'
+                                        +'<label for="wali_data" class="col-md-4 control-label">Wali Data</label>'
+
+                                        +'<div class="col-md-6">'
+                                            +'<input id="wali_data" type="text" class="form-control" name="wali_data[]" >'
+                                        +'</div>'
+                                    +'</div>')
           }
         </script>
         @endpush

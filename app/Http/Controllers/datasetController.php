@@ -33,15 +33,11 @@ class datasetController extends Controller
         }
 
         return Datatables::of($dataset)
-        ->editColumn('tanggal',function($dataset){
-            return date("d F Y",strtotime($dataset->tanggal));
-        })
-        ->editColumn('tipe', function($dataset){
-            if (isset($dataset->tipe)) {
-                $tipe = explode(";;", $dataset->tipe);
-                $tipe = implode(", ", $tipe);
+        ->editColumn('jenis_data', function($dataset){
+            if (isset($dataset->jenis_data)) {
+                $tipe = implode(",", $dataset->jenis_data);
             }else{
-                $tipe = "Link API";
+                $tipe = "-";
             }
             return $tipe;
         })
@@ -56,12 +52,16 @@ class datasetController extends Controller
                                  <a class="btn btn-warning btn-xs" href="'. URL::to('dataset/' . $dataset->_id . '/edit'). '"><i class="fa fa-pencil"></i>&nbsp;Edit</a>
                                 '.  Form::open(array('url' => 'dataset/' .$dataset->id . '', "class" => "pull-right")) .
                                 ''. Form::hidden("_method", "DELETE") .
-                                ''. Form::submit("Delete", array("class" => "btn btn-danger btn-xs btn-delete")) .
+                                // ''. Form::submit("Delete", array("class" => "btn btn-danger btn-xs btn-delete")) .
+                                ''. Form::button('<i class="fa fa-trash"></i> Delete', array(
+                                                        'type' => 'submit',
+                                                        'class'=> 'btn btn-danger btn-xs btn-delete',
+                                                )).
                                 ''. Form::close() .
                                 '</div>';
                 }else{
                     $button = '<div class="btn-group-vertical">
-                                 <a class="btn btn-default btn-xs" href="#">N/A</a>
+                                 <a class="btn btn-warning btn-xs" href="'. URL::to('dataset/' . $dataset->_id . '/edit'). '"><i class="fa fa-pencil"></i>&nbsp;Edit</a>
                                 </div>';
                 }
                 return $button;
@@ -89,10 +89,11 @@ class datasetController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'organisasi' => 'required',
+            // 'organisasi' => 'required',
             // 'file' => 'mimes:json,jpg'
         ]);
-        if ($request->hasFile('file')) {
+
+        /*if ($request->hasFile('file')) {
             $file = $request->file('file');
             $now = date("YmdHis");
             for ($i=0; $i < count($file); $i++) { 
@@ -108,10 +109,7 @@ class datasetController extends Controller
 
             $filenameori = implode(";;", $filenameori);
             $fileName = implode(";;", $fileName);
-        }
-
-        // $pecah = explode("/", $_POST['tanggal']);
-        // $tanggal = $pecah[2].'-'.$pecah[1].'-'.$pecah[0];
+        }*/
 
         $dataset = new Dataset;
         $dataset->organisasi = $_POST['organisasi'];
@@ -125,13 +123,15 @@ class datasetController extends Controller
         $dataset->sasaran = $_POST['sasaran'];
         $dataset->penganggungjawab = $_POST['penganggungjawab'];
         $dataset->kategori = $_POST['kategori'];
+        $dataset->nama_data = $_POST['nama_data'];
         $dataset->jenis_data = $_POST['jenis_data'];
-        $dataset->klasifikasi_data = $_POST['klasifikasi_data'];
-        if ($request->hasFile('file')) {
+        $dataset->kategori_data = $_POST['kategori_data'];
+        $dataset->wali_data = $_POST['wali_data'];
+        /*if ($request->hasFile('file')) {
             $dataset->filename = $fileName;
             $dataset->filenameori = $filenameori;
             $dataset->tipe = $tipe;
-        }
+        }*/
         $dataset->linkapi = $_POST['linkapi'];
         $dataset->howto = $_POST['howto'];
         $dataset->save();
@@ -160,6 +160,7 @@ class datasetController extends Controller
     public function edit($id)
     {
         $dataset = Dataset::find($id);
+        // dd($dataset);die;
         return view('dataset-create')->with('dataset',$dataset);
     }
 
@@ -173,13 +174,10 @@ class datasetController extends Controller
     public function update(Request $request, $id)
     {
          $this->validate($request, [
-            'organisasi' => 'required',
-            // 'deskripsi' => 'required',
-            // 'tanggal' => 'required|date_format:d/m/Y',
-            // 'howto' => 'required',
-            // 'file' => 'mimes:json,jpg'
+            // 'organisasi' => 'required',
         ]);
-        if ($request->hasFile('file')) {
+
+        /*if ($request->hasFile('file')) {
             $file = $request->file('file');
             $now = date("YmdHis");
             // dd(count($file));die;
@@ -196,10 +194,11 @@ class datasetController extends Controller
 
             $filenameori = implode(";;", $filenameori);
             $fileName = implode(";;", $fileName);
-        }
+        }*/
 
         // $pecah = explode("/", $_POST['tanggal']);
         // $tanggal = $pecah[2].'-'.$pecah[1].'-'.$pecah[0];
+
         $dataset = Dataset::find($id);
         $dataset->organisasi = $_POST['organisasi'];
         $dataset->alamat = $_POST['alamat'];
@@ -212,13 +211,10 @@ class datasetController extends Controller
         $dataset->sasaran = $_POST['sasaran'];
         $dataset->penganggungjawab = $_POST['penganggungjawab'];
         $dataset->kategori = $_POST['kategori'];
+        $dataset->nama_data = $_POST['nama_data'];
         $dataset->jenis_data = $_POST['jenis_data'];
-        $dataset->klasifikasi_data = $_POST['klasifikasi_data'];
-        if ($request->hasFile('file')) {
-            $dataset->filename = $fileName;
-            $dataset->filenameori = $filenameori;
-            $dataset->tipe = $tipe;
-        }
+        $dataset->kategori_data = $_POST['kategori_data'];
+        $dataset->wali_data = $_POST['wali_data'];
         $dataset->linkapi = $_POST['linkapi'];
         $dataset->howto = $_POST['howto'];
         $dataset->save();

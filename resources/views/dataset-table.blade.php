@@ -33,9 +33,10 @@
                           <thead>
                             <tr>
                               <!-- <th>ID</th> -->
-                              <th>Nama Lembaga</th>
-                              <th>Deskripsi</th>
-                              <th>Tipe</th>
+                              <th>Penyedia Layanan</th>
+                              <th>Deskripsi Layanan</th>
+                              <th>Jenis Data</th>
+                              <th>Link</th>
                               <th>Aksi</th>
                             </tr>
                           </thead>
@@ -63,7 +64,8 @@
                     // { data: '_id', name: '_id' },
                     { data: 'organisasi', name: 'organisasi' },
                     { data: 'deskripsi', name: 'deskripsi' },
-                    { data: 'tipe', name: 'tipe' },
+                    { data: 'jenis_data', name: 'jenis_data' },
+                    { data: 'linkapi', name: 'linkapi' },
                     { data: 'action', name: 'action' },
                 ]
             });

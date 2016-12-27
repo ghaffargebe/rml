@@ -61,28 +61,13 @@ class HomeController extends Controller
             $string = substr($stringCut, 0, 70).'... <a href="'.URL::to('frontdatadetail/'.$dataset->_id).'">Read More</a>';
             return $string;
         })
-        ->editColumn('tipe', function($dataset){
-            if (isset($dataset->tipe)) {
-                $tipe = explode(";;", $dataset->tipe);
-                $ret = '';
-                foreach ($tipe as $key) {
-                    if ($key == "json") {
-                        $label = 'primary';
-                    }elseif ($key == 'oai') {
-                        $label = 'danger';
-                    }elseif ($key == "csv") {
-                        $label = 'success';
-                    }else{
-                        $label = 'default';
-                    }
-                    $ret .= '<div class="div-td">';
-                    $ret .= '<span class="label label-'.$label.'">'.strtoupper($key).'</span>';
-                    $ret .= '</div>';
-                }
+        ->editColumn('jenis_data', function($dataset){
+            if (isset($dataset->jenis_data)) {
+                $tipe = implode(",", $dataset->jenis_data);
             }else{
-                $ret = '<span class="label label-info">Link API</span>';
+                $tipe = "-";
             }
-            return $ret;
+            return $tipe;
         })
         ->add_column('aksi', function($dataset){
             return '<a href="'.URL::to('frontdatadetail/'.$dataset->_id).'" class="btn btn-info">Detail</a>';
@@ -93,15 +78,9 @@ class HomeController extends Controller
     public function frontdatadetail($id)
     {
         $dataset = Dataset::find($id);
-        // $d = str_replace("<p>", "", $dataset->deskripsi);
-        // $d = str_replace("</p>", "", $d);
-        $howto = str_replace("<p>", "", $dataset->howto);
-        $howto = str_replace("</p>", "", $howto);
-
-        $filename = explode(";;", $dataset->filename);
-        $filenameori = explode(";;", $dataset->filenameori);
-        $tipe = explode(";;", $dataset->tipe);
-        return view('frontdatadetail')->with(compact('dataset','d','filename','filenameori','tipe','howto'));
+        $howto = strip_tags($dataset->howto);
+        $kat_data = array('1'=>'Standar','2'=>'Rahasia');
+        return view('frontdatadetail')->with(compact('dataset','d','filename','filenameori','tipe','howto','kat_data'));
     }
 
     public function download($path)

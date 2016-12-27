@@ -22,68 +22,76 @@
                       </ul>
                       <div id="myTabContent" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
-                          <small>( PERATURAN MENTERI KOMUNIKASI DAN INFORMATIKA REPUBLIK INDONESIA Pasal 8 Ayat (2) dan (3) )</small>
                             <h3>Deskripsi Sistem</h3>
-
+                            <i>PERATURAN MENTERI KOMUNIKASI DAN INFORMATIKA REPUBLIK INDONESIA Pasal 8 Ayat (2) dan (3)</i>
+                            <div class="separator"></div>
                             <h4>Instansi Penyedia Layanan : {{ $dataset->organisasi }}</h4>
                             
                             <h4>Alamat Instansi</h4>
                             <div class="separator"></div>
-                            <p><?php print_r($dataset->alamat);?></p>
-                            <p><?php print_r($dataset->alamat_web);?></p>
+                            <p><?php print_r(strip_tags($dataset->alamat));?></p>
+                            <p><?php print_r(strip_tags($dataset->alamat_web));?></p>
 
                             <h4>Pejabat Pendaftar Sistem Elektronik</h4>
                             <div class="separator"></div>
-                            <p><?php print_r($dataset->pejabat);?></p>
+                            <p><?php print_r(strip_tags($dataset->pejabat));?></p>
 
                             <h4>Deskripsi Layanan</h4>
                             <div class="separator"></div>
-                            <p><?php print_r($dataset->deskripsi);?></p>
+                            <p><?php print_r(strip_tags($dataset->deskripsi));?></p>
 
                             <h4>Ruang Lingkup Layanan</h4>
                             <div class="separator"></div>
-                            <p><?php print_r($dataset->ruang_lingkup);?></p>
+                            <p><?php print_r(strip_tags($dataset->ruang_lingkup));?></p>
 
                             <h4>Jenis Layanan</h4>
                             <div class="separator"></div>
-                            <p><?php print_r($dataset->jenis);?></p>
+                            <p><?php print_r(strip_tags($dataset->jenis));?></p>
 
                             <h4>Fungsi Utama Layanan</h4>
                             <div class="separator"></div>
-                            <p><?php print_r($dataset->fungsi_utama);?></p>
+                            <p><?php print_r(strip_tags($dataset->fungsi_utama));?></p>
 
                             <h4>Sasaran Layanan</h4>
                             <div class="separator"></div>
-                            <p><?php print_r($dataset->sasaran);?></p>
+                            <p><?php print_r(strip_tags($dataset->sasaran));?></p>
 
                             <h4>Penanggungjawab Layanan</h4>
                             <div class="separator"></div>
-                            <p><?php print_r($dataset->penanggungjawab);?></p>
+                            <p><?php print_r(strip_tags($dataset->penanggungjawab));?></p>
 
                             <h4>Kategori Sistem Elektronik</h4>
                             <div class="separator"></div>
-                            <p><?php print_r($dataset->kategori);?></p>
+                            <p><?php print_r(strip_tags($dataset->kategori));?></p>
                             
                         </div>
 
                         <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
-                          <h3>Data Description</h3>
+                          <h3>Deskripsi Data</h3>
                           <div class="separator"></div>
                           <table class="table table-bordered">
                             <thead>
                             <tr>
+                              <th>Nama Data</th>
                               <th>Jenis Data</th>
-                              <th>Klasifikasi Data</th>
+                              <th>Kategori Data</th>
+                              <th>Wali Data</th>
                             </tr>
                             </thead>
-                            <tr>
-                              <td>{{ $dataset->jenis_data }}</td>
-                              <td>{{ $dataset->klasifikasi }}</td>
-                            </tr>
+                            <tbody>
+                              @for($i=0;$i<count($dataset->nama_data);$i++)
+                              <tr>
+                                <td>{{ $dataset->nama_data[$i] }}</td>
+                                <td>{{ $dataset->jenis_data[$i] }}</td>
+                                <td>{{ $kat_data[$dataset->kategori_data[$i]] }}</td>
+                                <td>{{ $dataset->wali_data[$i] }}</td>
+                              </tr>
+                              @endfor
+                            </tbody>
                           </table>
                           
                         @if(isset($dataset->filename))
-                        <div class="attachment">
+                        <!-- <div class="attachment">
                                 <p>
                                   <span><i class="fa fa-paperclip"></i> {{count($filename)}} files — </span>
                                   <a href="#">Download all files</a> |
@@ -103,12 +111,13 @@
                                 @endfor
 
                                 </ul>
-                              </div>
+                              </div> -->
                         @endif
                         </div>
 
                         <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
-                          <h3>Service Description</h3>
+                          <h3>Deskripsi Layanan</h3>
+                            <div class="separator"></div>
                             <table class="table table-bordered">
                             <thead>
                             <tr>
@@ -117,8 +126,8 @@
                             </tr>
                             </thead>
                             <tr>
-                              <td>{{ $dataset->linkapi }}</td>
-                              <td>{{ $dataset->howto }}</td>
+                              <td>{{ print_r(strip_tags($dataset->linkapi)) }}</td>
+                              <td>{{ print_r(strip_tags($dataset->howto)) }}</td>
                             </tr>
                           </table>
                         </div>
